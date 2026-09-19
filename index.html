@@ -446,8 +446,88 @@
     </section>
   </main>
 
+
+  <footer>
+    <div class="wrap">&copy; 2026 Invest in Digital Marketing. Marketing spend is a business expense, not a financial product. We do not accept deposits or promise returns.</div>
+  </footer>    <section class="block about" id="about">
+      <div class="wrap">
+        <h2 class="title">About</h2>
+        <p>We help businesses invest in digital marketing as a planned spend, not a guess. Every plan starts with your goals and a budget you are comfortable with.</p>
+        <p>Results vary by business and market, so we never promise specific outcomes. We promise clear plans and honest reporting.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2 class="title">Start investing in your marketing</h2>
+        <p>Tell us about your business, your currency, and your monthly budget. Reach us by email or on Telegram (@private28272) and we will reply with next steps.</p>
+        <div class="button-row">
+          <a class="button" href="mailto:tinochrupalla162@gmail.com?subject=Marketing%20plan%20enquiry">Email us</a>
+          <a class="button button-alt" href="https://t.me/private28272" target="_blank" rel="noopener">Message on Telegram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
   <footer>
     <div class="wrap">&copy; 2026 Invest in Digital Marketing. Marketing spend is a business expense, not a financial product. We do not accept deposits or promise returns.</div>
   </footer>
+
+  <script>
+    (function () {
+      var currencies = {
+        USD: { name: "US dollar",            locale: "en-US", min: 500,    max: 10000,   step: 100,    def: 2000 },
+        EUR: { name: "Euro",                 locale: "en-IE", min: 500,    max: 10000,   step: 100,    def: 2000 },
+        GBP: { name: "British pound",        locale: "en-GB", min: 400,    max: 8000,    step: 100,    def: 1600 },
+        CAD: { name: "Canadian dollar",      locale: "en-CA", min: 700,    max: 13000,   step: 100,    def: 2700 },
+        AUD: { name: "Australian dollar",    locale: "en-AU", min: 800,    max: 15000,   step: 100,    def: 3000 },
+        NGN: { name: "Nigerian naira",       locale: "en-NG", min: 500000, max: 15000000, step: 100000, def: 3000000 },
+        GHS: { name: "Ghanaian cedi",        locale: "en-GH", min: 5000,   max: 150000,  step: 1000,   def: 30000 },
+        KES: { name: "Kenyan shilling",      locale: "en-KE", min: 50000,  max: 1300000, step: 10000,  def: 260000 },
+        ZAR: { name: "South African rand",   locale: "en-ZA", min: 9000,   max: 180000,  step: 1000,   def: 36000 },
+        INR: { name: "Indian rupee",         locale: "en-IN", min: 40000,  max: 800000,  step: 5000,   def: 160000 },
+        AED: { name: "UAE dirham",           locale: "en-AE", min: 1800,   max: 37000,   step: 200,    def: 7000 }
+      };
+
+      var regionToCurrency = {
+        US: "USD", GB: "GBP", CA: "CAD", AU: "AUD", NG: "NGN", GH: "GHS",
+        KE: "KES", ZA: "ZAR", IN: "INR", AE: "AED",
+        IE: "EUR", DE: "EUR", FR: "EUR", ES: "EUR", IT: "EUR", NL: "EUR",
+        BE: "EUR", PT: "EUR", AT: "EUR", FI: "EUR", GR: "EUR"
+      };
+
+      var channels = [
+        { name: "Search (SEO)",   pct: 30, color: "#1F4FE0" },
+        { name: "Paid ads",       pct: 30, color: "#F2A900" },
+        { name: "Social media",   pct: 25, color: "#7EA3F5" },
+        { name: "Content",        pct: 15, color: "#FFFFFF" }
+      ];
+
+      var slider = document.getElementById("budget");
+      var select = document.getElementById("currency");
+      var totalEl = document.getElementById("total");
+      var bar = document.getElementById("bar");
+      var list = document.getElementById("split");
+      var code = "USD";
+      var formatter;
+
+      function detectCurrency() {
+        try {
+          var lang = navigator.language || "en-US";
+          var region = (lang.split("-")[1] || "").toUpperCase();
+          return regionToCurrency[region] || "USD";
+        } catch (e) {
+          return "USD";
+        }
+      }
+
+      function setCurrency(newCode, resetValue) {
+        code = newCode;
+        var c = currencies[code];
+        formatter = new Intl.NumberFormat(c.locale, {
+          style: "currency",
+          currency: code,
+
+
 
 
