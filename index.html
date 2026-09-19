@@ -1,12 +1,372 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Digital Marketing</title>
+  <title>Invest in Digital Marketing</title>
+  <meta name="description" content="Invest in digital marketing with a clear plan. Choose a budget in your own currency and see how it is shared across search, social, ads, and content.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #EEF2F6;
+      --white: #FFFFFF;
+      --ink: #10243E;
+      --muted: #4A5B70;
+      --blue: #1F4FE0;
+      --sky: #7EA3F5;
+      --amber: #F2A900;
+      --line: #CBD5E1;
+      --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+      --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+    }
+
+    a { color: var(--blue); }
+
+    .visually-hidden {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--amber);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 44rem;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Top bar */
+    .topbar {
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      background: var(--white);
+    }
+    .topbar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .topbar a.contact-link {
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--ink);
+      border-bottom: 2px solid var(--amber);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 2.75rem 0 2.5rem;
+    }
+    h1 {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.3rem, 9vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 1.1rem;
+    }
+    .lede {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 34rem;
+      margin: 0 0 2rem;
+    }
+
+    /* Budget planner */
+    .planner {
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 6px;
+      padding: 1.5rem 1.25rem 1.6rem;
+    }
+    .planner h2 {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 0 0 0.25rem;
+    }
+    .planner .hint {
+      margin: 0 0 1.25rem;
+      color: #B7C4D6;
+      font-size: 0.95rem;
+    }
+    .currency-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0 0 1.25rem;
+    }
+    .currency-row label {
+      color: #B7C4D6;
+      font-size: 0.95rem;
+    }
+    .currency-row select {
+      flex: 1;
+      min-height: 2.75rem;
+      background: #1B3556;
+      color: var(--white);
+      border: 1px solid #3A4E6B;
+      border-radius: 4px;
+      padding: 0 0.75rem;
+      font-family: var(--body);
+      font-size: 1rem;
+    }
+
+    .amount {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 12vw, 3.8rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.25rem;
+    }
+    .amount small {
+      display: block;
+      margin-top: 0.4rem;
+      font-family: var(--body);
+      font-weight: 400;
+      font-size: 1rem;
+      letter-spacing: 0;
+      color: #B7C4D6;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 2.75rem;
+      background: transparent;
+      margin: 0.5rem 0 1rem;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 6px;
+      background: #3A4E6B;
+      border-radius: 3px;
+    }
+    input[type="range"]::-moz-range-track {
+      height: 6px;
+      background: #3A4E6B;
+      border-radius: 3px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 3px solid var(--ink);
+      margin-top: -11px;
+      box-shadow: 0 0 0 2px var(--amber);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 2px var(--amber);
+    }
+
+    .bar {
+      display: flex;
+      height: 22px;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+    .bar span {
+      display: block;
+      height: 100%;
+    }
+
+    .split {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .split li {
+      display: grid;
+      grid-template-columns: 14px 1fr auto;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-top: 1px solid #2D4160;
+    }
+    .split .swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+    }
+    .split .pct {
+      color: #B7C4D6;
+      font-size: 0.9rem;
+    }
+    .split .money {
+      font-weight: 500;
+      font-variant-numeric: tabular-nums;
+      text-align: right;
+      min-width: 5.5rem;
+    }
+    .note {
+      margin: 1rem 0 0;
+      font-size: 0.85rem;
+      color: #B7C4D6;
+    }
+
+    /* Sections */
+    .block {
+      padding: 2.75rem 0;
+      border-top: 1px solid var(--line);
+    }
+    h2.title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.7rem, 6vw, 2.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+
+    .services {
+      margin: 0;
+      padding: 0;
+    }
+    .services dt {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 1.25rem;
+    }
+    .services dt:first-child { margin-top: 0; }
+    .services dd {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      position: relative;
+      padding: 0 0 1.5rem 3rem;
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--display);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+    .steps li::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 2.25rem;
+      bottom: 0.25rem;
+      width: 2px;
+      background: var(--line);
+    }
+    .steps li:last-child { padding-bottom: 0; }
+    .steps li:last-child::after { display: none; }
+    .steps strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.15rem;
+    }
+    .steps span { color: var(--muted); }
+
+    .about p { max-width: 36rem; margin: 0 0 1rem; }
+
+    .contact {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      padding: 3rem 0 3.5rem;
+    }
+    .button {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.95rem 1.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    .button:hover { background: #1740B8; }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .button-row .button { margin-top: 0; }
+    .button-alt {
+      background: var(--ink);
+    }
+    .button-alt:hover { background: #1C3A5E; }
+
+    footer {
+      padding: 1.5rem 0 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
-  <h1>Digital Marketing</h1>
-  <p>My site is live!</p>
-</body>
-</html>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">Invest in Digital Marketing</a>
+      <a class="contact-link" href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Invest in digital marketing with a clear plan.</h1>
+        
