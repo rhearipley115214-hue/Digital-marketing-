@@ -754,7 +754,117 @@
 
   <footer>
     <div class="wrap">&copy; 2026 In digitales Marketing investieren. Marketingausgaben sind Betriebsausgaben, kein Finanzprodukt. Wir nehmen keine Einlagen an und versprechen keine Renditen.</div>
-  </footer>
+  </footer>  <script>
+    (function () {
+      var currencies = {
+        EUR: { name: "Euro",                     locale: "de-DE", min: 500,    max: 10000,   step: 100,    def: 2000 },
+        CHF: { name: "Schweizer Franken",        locale: "de-CH", min: 500,    max: 10000,   step: 100,    def: 2000 },
+        USD: { name: "US-Dollar",                locale: "de-DE", min: 500,    max: 10000,   step: 100,    def: 2000 },
+        GBP: { name: "Britisches Pfund",         locale: "de-DE", min: 400,    max: 8000,    step: 100,    def: 1600 },
+        CAD: { name: "Kanadischer Dollar",       locale: "de-DE", min: 700,    max: 13000,   step: 100,    def: 2700 },
+        AUD: { name: "Australischer Dollar",     locale: "de-DE", min: 800,    max: 15000,   step: 100,    def: 3000 },
+        NGN: { name: "Nigerianischer Naira",     locale: "de-DE", min: 500000, max: 15000000, step: 100000, def: 3000000 },
+        GHS: { name: "Ghanaischer Cedi",         locale: "de-DE", min: 5000,   max: 150000,  step: 1000,   def: 30000 },
+        KES: { name: "Kenia-Schilling",          locale: "de-DE", min: 50000,  max: 1300000, step: 10000,  def: 260000 },
+        ZAR: { name: "Südafrikanischer Rand",    locale: "de-DE", min: 9000,   max: 180000,  step: 1000,   def: 36000 },
+        INR: { name: "Indische Rupie",           locale: "de-DE", min: 40000,  max: 800000,  step: 5000,   def: 160000 },
+        AED: { name: "VAE-Dirham",               locale: "de-DE", min: 1800,   max: 37000,   step: 200,    def: 7000 }
+      };
+
+      var regionToCurrency = {
+        DE: "EUR", AT: "EUR", CH: "CHF", LI: "CHF",
+        US: "USD", GB: "GBP", CA: "CAD", AU: "AUD", NG: "NGN", GH: "GHS",
+        KE: "KES", ZA: "ZAR", IN: "INR", AE: "AED",
+        IE: "EUR", FR: "EUR", ES: "EUR", IT: "EUR", NL: "EUR",
+        BE: "EUR", PT: "EUR", FI: "EUR", GR: "EUR", LU: "EUR"
+      };
+
+      var channels = [
+        { name: "Suche (SEO)",     pct: 30, color: "#1F4FE0" },
+        { name: "Bezahlte Werbung", pct: 30, color: "#F2A900" },
+        { name: "Social Media",   pct: 25, color: "#7EA3F5" },
+        { name: "Inhalte",        pct: 15, color: "#FFFFFF" }
+      ];
+
+      var slider = document.getElementById("budget");
+      var select = document.getElementById("currency");
+      var totalEl = document.getElementById("total");
+      var bar = document.getElementById("bar");
+      var list = document.getElementById("split");
+      var code = "EUR";
+      var formatter;
+
+      function detectCurrency() {
+        try {
+          var lang = navigator.language || "de-DE";
+          var region = (lang.split("-")[1] || "").toUpperCase();
+          return regionToCurrency[region] || "EUR";
+        } catch (e) {
+          return "EUR";
+        }
+      }
+
+      function setCurrency(newCode, resetValue) {
+        code = newCode;
+        var c = currencies[code];
+        formatter = new Intl.NumberFormat(c.locale, {
+          style: "currency",
+          currency: code,
+          maximumFractionDigits: 0
+        });
+        slider.min = c.min;
+        slider.max = c.max;
+        slider.step = c.step;
+        if (resetValue) slider.value = c.def;
+        render();
+      }
+
+      function money(n) {
+        return formatter.format(Math.round(n));
+      }
+
+      function render() {
+        var total = Number(slider.value);
+        totalEl.textContent = money(total);
+
+        bar.innerHTML = "";
+        list.innerHTML = "";
+
+        channels.forEach(function (ch) {
+          var seg = document.createElement("span");
+          seg.style.width = ch.pct + "%";
+          seg.style.background = ch.color;
+          bar.appendChild(seg);
+
+          var li = document.createElement("li");
+          li.innerHTML =
+            '<span class="swatch" style="background:' + ch.color + '"></span>' +
+            '<span>' + ch.name + ' <span class="pct">' + ch.pct + '%</span></span>' +
+            '<span class="money">' + money(total * ch.pct / 100) + '</span>';
+          list.appendChild(li);
+        });
+      }
+
+      Object.keys(currencies).forEach(function (k) {
+        var opt = document.createElement("option");
+        opt.value = k;
+        opt.textContent = k + " - " + currencies[k].name;
+        select.appendChild(opt);
+      });
+
+      select.addEventListener("change", function () {
+        setCurrency(select.value, true);
+      });
+      slider.addEventListener("input", render);
+
+      var start = detectCurrency();
+      select.value = start;
+      setCurrency(start, true);
+    })();
+  </script>
+</body>
+</html>
+
 
 
 
