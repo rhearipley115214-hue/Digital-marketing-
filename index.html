@@ -552,7 +552,211 @@
     })();
   </script>
 </body>
-</html>
+</html>    /* Sections */
+    .block {
+      padding: 2.75rem 0;
+      border-top: 1px solid var(--line);
+    }
+    h2.title {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(1.7rem, 6vw, 2.2rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+
+    .services {
+      margin: 0;
+      padding: 0;
+    }
+    .services dt {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.2rem;
+      margin-top: 1.25rem;
+    }
+    .services dt:first-child { margin-top: 0; }
+    .services dd {
+      margin: 0.2rem 0 0;
+      color: var(--muted);
+    }
+
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: step;
+    }
+    .steps li {
+      position: relative;
+      padding: 0 0 1.5rem 3rem;
+      counter-increment: step;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--display);
+      font-weight: 800;
+      display: grid;
+      place-items: center;
+    }
+    .steps li::after {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 2.25rem;
+      bottom: 0.25rem;
+      width: 2px;
+      background: var(--line);
+    }
+    .steps li:last-child { padding-bottom: 0; }
+    .steps li:last-child::after { display: none; }
+    .steps strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 1.15rem;
+    }
+    .steps span { color: var(--muted); }
+
+    .about p { max-width: 36rem; margin: 0 0 1rem; }
+
+    .contact {
+      background: var(--white);
+      border-top: 1px solid var(--line);
+      padding: 3rem 0 3.5rem;
+    }
+    .button {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 500;
+      text-decoration: none;
+      padding: 0.95rem 1.5rem;
+      border-radius: 4px;
+      margin-top: 0.5rem;
+    }
+    .button:hover { background: #1740B8; }
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+    .button-row .button { margin-top: 0; }
+    .button-alt {
+      background: var(--ink);
+    }
+    .button-alt:hover { background: #1C3A5E; }
+
+    footer {
+      padding: 1.5rem 0 2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top">In digitales Marketing investieren</a>
+      <a class="contact-link" href="#contact">Kontakt</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Investieren Sie mit klarem Plan in digitales Marketing.</h1>
+        <p class="lede">Wählen Sie ein monatliches Budget in Ihrer Währung und sehen Sie, wie es auf Suchmaschinen, Social Media, Anzeigen und Inhalte verteilt werden kann. Danach erstellen wir den Plan und berichten Ihnen jeden Monat.</p>
+
+        <div class="planner" aria-labelledby="planner-title">
+          <h2 id="planner-title">Planen Sie Ihre Marketing-Investition</h2>
+          <p class="hint">Wählen Sie eine Währung und bewegen Sie den Regler, um eine Beispielverteilung zu sehen.</p>
+
+          <div class="currency-row">
+            <label for="currency">Währung</label>
+            <select id="currency"></select>
+          </div>
+
+          <p class="amount" aria-live="polite"><span id="total"></span> <small>pro Monat</small></p>
+
+          <label for="budget" class="visually-hidden">Monatliches Marketingbudget</label>
+          <input type="range" id="budget" min="500" max="10000" step="100" value="2000">
+
+          <div class="bar" id="bar" aria-hidden="true"></div>
+
+          <ul class="split" id="split"></ul>
+
+          <p class="note">Dies ist nur eine Beispielverteilung. Die endgültige Aufteilung hängt von Ihren Zielen und der Analyse ab. Marketingergebnisse schwanken und sind nicht garantiert.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="services">
+      <div class="wrap">
+        <h2 class="title">Wofür Ihre Investition eingesetzt wird</h2>
+        <dl class="services">
+          <dt>Suchmaschinenoptimierung (SEO)</dt>
+          <dd>Wir verbessern Ihre Website, damit Menschen, die nach Ihrem Angebot suchen, Sie finden.</dd>
+
+          <dt>Social Media</dt>
+          <dd>Regelmäßige Beiträge und Antworten auf den Plattformen, die Ihre Kunden bereits nutzen.</dd>
+
+          <dt>Bezahlte Werbung</dt>
+          <dd>Such- und Social-Anzeigen mit festem Budget und Erfolgsmessung bei jeder Kampagne.</dd>
+
+          <dt>Inhalte</dt>
+          <dd>Artikel, E-Mails und Landingpages, die erklären, was Sie anbieten.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block" id="process">
+      <div class="wrap">
+        <h2 class="title">So arbeiten wir zusammen</h2>
+        <ol class="steps">
+          <li><strong>Analyse</strong><span>Wir prüfen Ihre Website, Ihre aktuellen Kanäle und Ihre bisherigen Ausgaben.</span></li>
+          <li><strong>Planung</strong><span>Wir wählen die Kanäle aus und legen fest, wie Ihr Budget verteilt wird.</span></li>
+          <li><strong>Start</strong><span>Wir veröffentlichen Kampagnen und richten Tracking ein, damit Ergebnisse messbar sind.</span></li>
+          <li><strong>Bericht</strong><span>Jeden Monat erhalten Sie eine kurze Zusammenfassung, was ausgegeben wurde und was passiert ist.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="block about" id="about">
+      <div class="wrap">
+        <h2 class="title">Über uns</h2>
+        <p>Wir helfen Unternehmen, digitales Marketing als geplante Ausgabe zu nutzen, nicht auf gut Glück. Jeder Plan beginnt mit Ihren Zielen und einem Budget, mit dem Sie sich wohlfühlen.</p>
+        <p>Ergebnisse hängen vom Unternehmen und vom Markt ab, deshalb versprechen wir keine bestimmten Resultate. Wir versprechen klare Pläne und ehrliche Berichte.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <h2 class="title">Starten Sie mit Ihrem Marketing</h2>
+        <p>Erzählen Sie uns von Ihrem Unternehmen, Ihrer Währung und Ihrem monatlichen Budget. Erreichen Sie uns per E-Mail oder auf Telegram (@private28272), und wir melden uns mit den nächsten Schritten.</p>
+        <div class="button-row">
+          <a class="button" href="mailto:tinochrupalla162@gmail.com?subject=Anfrage%20Marketingplan">E-Mail schreiben</a>
+          <a class="button button-alt" href="https://t.me/private28272" target="_blank" rel="noopener">Auf Telegram schreiben</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">&copy; 2026 In digitales Marketing investieren. Marketingausgaben sind Betriebsausgaben, kein Finanzprodukt. Wir nehmen keine Einlagen an und versprechen keine Renditen.</div>
+  </footer>
+
+
 
 
 
